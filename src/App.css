@@ -1,0 +1,13 @@
+header {
+  background-color: white !important;
+  color: black !important;
+}
+
+.footer {
+  background-color: black;
+  color: white;
+  min-height: 20vh;
+}
+.page-content {
+  min-height: 84vh;
+}
