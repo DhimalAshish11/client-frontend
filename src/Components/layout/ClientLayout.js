@@ -3,14 +3,18 @@ import { Container } from "react-bootstrap";
 import { Header } from "../layout/Header";
 import { Footer } from "../layout/Footer";
 
-export const ClientLayout = ({ children }) => {
+export const ClientLayout = ({ children, title }) => {
   return (
     <div className="client-layout">
       <main className="main">
         <Header />
 
         <Container>
-          <div className="page-content">{children}</div>
+          <div className="mt-3">
+            <h3>{title}</h3>
+            <hr />
+          </div>
+          <div className="page-content mt-3">{children}</div>
         </Container>
 
         <Footer />

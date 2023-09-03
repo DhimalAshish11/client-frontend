@@ -1,3 +1,6 @@
+.main {
+  min-height: 83vh;
+}
 header {
   background-color: white !important;
   color: black !important;
@@ -10,4 +13,8 @@ header {
 }
 .page-content {
   min-height: 84vh;
+}
+
+.carousel img {
+  height: 60vh;
 }
