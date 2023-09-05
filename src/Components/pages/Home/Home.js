@@ -1,13 +1,22 @@
 import React from "react";
 import ClientLayout from "../../layout/ClientLayout";
-import HeroHome from "./HeroHome";
+
+import HomeSection from "./HomeSection";
 
 const Home = () => {
   return (
-    <ClientLayout title="Home">
-      <HeroHome />
+    <ClientLayout>
+      <HomeSection />
     </ClientLayout>
   );
 };
 
 export default Home;
+
+/*  <ClientLayout>
+
+
+  
+
+
+  </ClientLayout>; */
