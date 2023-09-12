@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import a from "../../../../assets/a.jpg";
 import b from "../../../../assets/b.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductByCategoryAction } from "../../../product/productAction";
+import { getNewProductByCategory } from "../../../../helper/axios";
+import { useParams } from "react-router-dom";
 
 const GuitarsProducts = () => {
-  const products = [
+  const { _id } = useParams();
+  /* const products = [
+
     {
       id: 1,
       name: "Product 1",
@@ -40,7 +46,19 @@ const GuitarsProducts = () => {
       price: 29.99,
       imageUrl: a,
     },
-  ];
+  ]; */
+
+  const [productDt, setProductDt] = useState([]);
+
+  useEffect(() => {
+    const getProductByCat = async () => {
+      const { products } = await getNewProductByCategory(_id);
+
+      setProductDt(products);
+    };
+    getProductByCat();
+  }, []);
+
   return (
     <div>
       <section className="py-12">
@@ -49,19 +67,21 @@ const GuitarsProducts = () => {
             Featured Products
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product) => (
+            {productDt?.map((item) => (
               <div
-                key={product.id}
+                key={item._id}
                 className="bg-white rounded-lg shadow-md overflow-hidden"
               >
                 <img
-                  src={product.imageUrl}
-                  alt={product.name}
+                  src={
+                    process.env.REACT_APP_ROOTSERVER + item.thumbnail?.slice(6)
+                  }
+                  alt={item.name}
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-4">
-                  <h3 className="text-xl font-semibold">{product.name}</h3>
-                  <p className="text-gray-600">${product.price.toFixed(2)}</p>
+                  <h3 className="text-xl font-semibold">{item.name}</h3>
+                  <p className="text-gray-600">${item.price.toFixed(2)}</p>
                   <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full mt-4">
                     Add to Cart
                   </button>

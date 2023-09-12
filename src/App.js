@@ -7,18 +7,20 @@ import Amps from "./Components/pages/Category/Amps/Amps";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getCategoryAction } from "./Components/category/CatAction";
+import { getNewProductAction } from "./Components/product/productAction";
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCategoryAction());
+    dispatch(getNewProductAction());
   }, [dispatch]);
 
   return (
     <div className="">
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/guitars" element={<Guitars />}></Route>
+        <Route path="/guitars/:slug?/:_id?" element={<Guitars />}></Route>
         <Route path="/amps" element={<Amps />}></Route>
       </Routes>
     </div>

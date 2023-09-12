@@ -1,11 +1,18 @@
 import React, { useEffect } from "react";
 import HeroSection from "./HeroSection";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategoryAction } from "../../category/CatAction";
+import { getProductByCategoryAction } from "../../product/productAction";
 
 const HomeSection = () => {
-  const categories = useSelector((state) => state.categoryInfo);
+  const dispatch = useDispatch();
+  const { _id } = useParams();
+  const { cats } = useSelector((state) => state.categoryInfo);
+  console.log(cats);
+
+  useEffect(() => {
+    dispatch(getProductByCategoryAction(_id));
+  }, [dispatch, _id]);
 
   return (
     <div className="flex">
@@ -13,13 +20,13 @@ const HomeSection = () => {
       <aside className="w-1/4 h-100 bg-gray-200 p-4 mt-4">
         <h2 className="text-xl font-semibold m-6">Product Categories</h2>
         <ul>
-          {categories?.map((category) => (
-            <li key={category} className="mb-2">
+          {cats?.map((cat) => (
+            <li key={cat._id} className="mb-2">
               <Link
-                to={`/${category.toLowerCase()}`}
+                to={`guitars/${cat.slug}/${cat._id}`}
                 className="text-black-500 hover:underline"
               >
-                {category}
+                {cat.title}
               </Link>
             </li>
           ))}
