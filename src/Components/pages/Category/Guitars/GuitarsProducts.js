@@ -5,48 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductByCategoryAction } from "../../../product/productAction";
 import { getNewProductByCategory } from "../../../../helper/axios";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const GuitarsProducts = () => {
   const { _id } = useParams();
-  /* const products = [
-
-    {
-      id: 1,
-      name: "Product 1",
-      price: 19.99,
-      imageUrl: a,
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 29.99,
-      imageUrl: b,
-    },
-    {
-      id: 2,
-      name: "Product 3",
-      price: 29.99,
-      imageUrl: a,
-    },
-    {
-      id: 2,
-      name: "Product 3",
-      price: 29.99,
-      imageUrl: a,
-    },
-    {
-      id: 2,
-      name: "Product 3",
-      price: 29.99,
-      imageUrl: a,
-    },
-    {
-      id: 2,
-      name: "Product 3",
-      price: 29.99,
-      imageUrl: a,
-    },
-  ]; */
 
   const [productDt, setProductDt] = useState([]);
 
@@ -70,17 +32,19 @@ const GuitarsProducts = () => {
             {productDt?.map((item) => (
               <div
                 key={item._id}
-                className="bg-white rounded-lg shadow-md overflow-hidden"
+                className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
               >
                 <img
                   src={
                     process.env.REACT_APP_ROOTSERVER + item.thumbnail?.slice(6)
                   }
                   alt={item.name}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-48 object-cover hover:scale-110"
                 />
                 <div className="p-4">
-                  <h3 className="text-xl font-semibold">{item.name}</h3>
+                  <h3 className="text-xl font-semibold">
+                    <Link to="/productdetail">{item.name}</Link>
+                  </h3>
                   <p className="text-gray-600">${item.price.toFixed(2)}</p>
                   <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full mt-4">
                     Add to Cart
