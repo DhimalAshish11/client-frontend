@@ -22,8 +22,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/guitars/:slug?/:_id?" element={<Guitars />}></Route>
+
         <Route path="/amps" element={<Amps />}></Route>
-        <Route path="/productdetail" element={<ProductDetail />}></Route>
+        <Route
+          path="/productdetail/:slug?/:_id?"
+          element={<ProductDetail />}
+        ></Route>
       </Routes>
     </div>
   );

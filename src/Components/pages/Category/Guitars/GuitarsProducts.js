@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 const GuitarsProducts = () => {
   const { _id } = useParams();
+  const { products } = useSelector((state) => state.productInfo);
 
   const [productDt, setProductDt] = useState([]);
 
@@ -43,7 +44,9 @@ const GuitarsProducts = () => {
                 />
                 <div className="p-4">
                   <h3 className="text-xl font-semibold">
-                    <Link to="/productdetail">{item.name}</Link>
+                    <Link to={`productdetail/${products.slug}/${products._id}`}>
+                      {item.name}
+                    </Link>
                   </h3>
                   <p className="text-gray-600">${item.price.toFixed(2)}</p>
                   <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full mt-4">
