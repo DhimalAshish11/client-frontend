@@ -44,7 +44,7 @@ const GuitarsProducts = () => {
                 />
                 <div className="p-4">
                   <h3 className="text-xl font-semibold">
-                    <Link to={`productdetail/${products.slug}/${products._id}`}>
+                    <Link to={`/product/${item.slug}/${item._id}`}>
                       {item.name}
                     </Link>
                   </h3>

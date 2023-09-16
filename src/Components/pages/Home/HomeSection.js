@@ -23,7 +23,7 @@ const HomeSection = () => {
           {cats?.map((cat) => (
             <li key={cat._id} className="mb-2">
               <Link
-                to={`guitars/${cat.slug}/${cat._id}`}
+                to={`category/${cat.slug}/${cat._id}`}
                 className="text-black-500 hover:underline"
               >
                 {cat.title}
