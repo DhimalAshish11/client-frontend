@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   carts: [],
+  cartItemCount: 0,
 };
 
 const cartSlice = createSlice({
@@ -9,11 +10,14 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addcarts: (state, { payload }) => {
-      const isThisNewItem = state.carts.find((item) => item._id == payload._id);
+      const isThisNewItem = state.carts.find(
+        (item) => item._id === payload._id
+      );
       console.log(isThisNewItem);
 
       if (!isThisNewItem) {
         state.carts.push(payload);
+        state.cartItemCount += 1;
         return;
       } else {
         const indexOfItemToBeReplaced = state.carts.findIndex(
@@ -27,8 +31,23 @@ const cartSlice = createSlice({
         state.carts.push(payload);
       }
     },
+
+    removecart: (state, { payload }) => {
+      // Find the index of the cart item with the given _id and remove it from the carts array.
+      const indexOfItemToRemove = state.carts.findIndex(
+        (item) => item._id === payload._id
+      );
+
+      if (indexOfItemToRemove !== -1) {
+        state.carts.splice(indexOfItemToRemove, 1);
+        state.cartItemCount -= 1;
+        if (state.cartItemCount < 0) {
+          state.cartItemCount = 0;
+        }
+      }
+    },
   },
 });
 const { reducer, actions } = cartSlice;
-export const { addcarts } = actions;
+export const { addcarts, removecart } = actions;
 export default reducer;

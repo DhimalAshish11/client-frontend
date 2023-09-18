@@ -8,6 +8,7 @@ const HomeSection = () => {
   const dispatch = useDispatch();
   const { _id } = useParams();
   const { cats } = useSelector((state) => state.categoryInfo);
+
   console.log(cats);
 
   useEffect(() => {
