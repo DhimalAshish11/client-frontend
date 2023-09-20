@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeCartAction } from "../../addToCart/CartAction";
 
-const Cart = ({ thumbnail, name, price, _id }) => {
+const Cart = ({ thumbnail, name, price, _id, orderqty }) => {
   const dispatch = useDispatch();
 
   console.log(_id);
@@ -21,16 +21,16 @@ const Cart = ({ thumbnail, name, price, _id }) => {
               <img
                 src={process.env.REACT_APP_ROOTSERVER + thumbnail?.slice(6)}
                 alt={name}
-                clasName="w-1/2 rounded-lg sm:w-40"
+                clasName="w-1/3 rounded-lg sm:w-40"
               />
               <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                 <div className="mt-5 sm:mt-0">
                   <h2 clasName="text-lg font-bold text-gray-900">{name}</h2>
-                  <p className="mt-1 text-xs text-gray-700">36EU - 4US</p>
+                  <p className="mt-1 text-xs text-gray-700">{orderqty}</p>
                 </div>
                 <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                   <div className="flex items-center space-x-4">
-                    <p className="text-m p-10">{price} </p>
+                    <p className="text-m p-10">${price * orderqty} </p>
                     <svg
                       onClick={handleOnClick}
                       xmlns="http://www.w3.org/2000/svg"

@@ -14,6 +14,7 @@ export const CartInfo = () => {
           thumbnail={item.thumbnail}
           price={item.price}
           _id={item._id}
+          orderqty={item.orderqty}
         />
       ))}
       <SubTotal />

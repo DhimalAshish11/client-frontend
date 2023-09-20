@@ -3,13 +3,14 @@ import ClientLayout from "../layout/ClientLayout";
 import { useParams } from "react-router-dom";
 import { getNewProduct, getNewProductByCategory } from "../../helper/axios";
 import { useDispatch, useSelector } from "react-redux";
-import { postCartAction } from "../addToCart/CartAction";
+import { postCartAction, updateCartAction } from "../addToCart/CartAction";
 
 const ProductDetail = () => {
   const { _id } = useParams();
   const dispatch = useDispatch();
 
   const [productDt, setProductDt] = useState({});
+  const [orderQt, setOrderQt] = useState(1);
   console.log(productDt);
   const getEachProduct = async () => {
     const { results } = await getNewProduct(_id);
@@ -19,7 +20,16 @@ const ProductDetail = () => {
 
   const handleOnClick = (e) => {
     e.preventDefault();
-    dispatch(postCartAction({ ...productDt, orderqty: 1 }));
+    dispatch(
+      postCartAction({ ...productDt, orderqty: parseInt(`${orderQt}`) })
+    );
+  };
+
+  const handleOnChange = (e) => {
+    let { name, value } = e.target;
+    name = value;
+    console.log(name);
+    setOrderQt(name);
   };
 
   useEffect(() => {
@@ -157,22 +167,16 @@ const ProductDetail = () => {
                       </div>
                       <div className="flex ml-6 items-center">
                         {/*  <span className="mr-3">Size</span> */}
-                        <div classNameName="">
-                          <label
-                            htmlFor="quantity"
-                            classNameName="text-gray-700"
-                          >
+                        <div className="">
+                          <label htmlFor="quantity" className="text-gray-700">
                             Quantity:
                           </label>
                           <input
                             type="number"
                             id="quantity"
                             name="quantity"
-                            /*  value={quantity} */
-                            /*    onChange={handleQuantityChange} */
-                            /*   min={minQuantity}
-                          max={maxQuantity} */
-                            classNameName="w-16 border border-gray-300 rounded-md p-2"
+                            className="w-20 ml-3 border border-gray-300 rounded-md p-2"
+                            onChange={handleOnChange}
                           />
                         </div>
                       </div>

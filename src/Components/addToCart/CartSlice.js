@@ -46,8 +46,17 @@ const cartSlice = createSlice({
         }
       }
     },
+    updatecartquantity: (state, { payload }) => {
+      const { _id, newQuantity } = payload;
+      const cartItem = state.carts.find((item) => item._id === _id);
+
+      if (cartItem) {
+        // Update the order quantity of the cart item
+        cartItem.orderqty = newQuantity;
+      }
+    },
   },
 });
 const { reducer, actions } = cartSlice;
-export const { addcarts, removecart } = actions;
+export const { addcarts, removecart, updatecartquantity } = actions;
 export default reducer;
