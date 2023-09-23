@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const SubTotal = () => {
   const dispatch = useDispatch();
@@ -36,9 +37,11 @@ const SubTotal = () => {
             <p className="text-sm text-gray-700">including VAT</p>
           </div>
         </div>
-        <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
-          Check out
-        </button>
+        <Link to="/check-out/">
+          <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
+            Check out
+          </button>
+        </Link>
       </div>
     </div>
   );

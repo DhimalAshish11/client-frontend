@@ -48,8 +48,9 @@ const cartSlice = createSlice({
     },
     updatecartquantity: (state, { payload }) => {
       const { _id, newQuantity } = payload;
-      const cartItem = state.carts.find((item) => item._id === _id);
 
+      const cartItem = state.carts.find((item) => item._id === _id);
+      console.log(cartItem);
       if (cartItem) {
         // Update the order quantity of the cart item
         cartItem.orderqty = newQuantity;

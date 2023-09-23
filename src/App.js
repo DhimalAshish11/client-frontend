@@ -10,6 +10,7 @@ import { getCategoryAction } from "./Components/category/CatAction";
 import { getNewProductAction } from "./Components/product/productAction";
 import ProductDetail from "./Components/product/ProductDetail";
 import CartInfo from "./Components/pages/AddToCart/CartInfo";
+import CheckOut from "./Components/pages/AddToCart/CheckOut";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
         <Route path="/cart/:slug?/:_id?" element={<CartInfo />}></Route>
 
         <Route path="/product/:slug?/:_id?" element={<ProductDetail />}></Route>
+        <Route path="/check-out/" element={<CheckOut />}></Route>
       </Routes>
     </div>
   );

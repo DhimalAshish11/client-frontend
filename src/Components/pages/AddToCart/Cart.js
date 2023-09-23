@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeCartAction } from "../../addToCart/CartAction";
+import { updatecartquantity } from "../../addToCart/CartSlice";
 
 const Cart = ({ thumbnail, name, price, _id, orderqty }) => {
   const dispatch = useDispatch();
 
-  console.log(_id);
   const handleOnClick = (e) => {
     e.preventDefault();
     dispatch(removeCartAction({ _id }));
@@ -26,7 +26,8 @@ const Cart = ({ thumbnail, name, price, _id, orderqty }) => {
               <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                 <div className="mt-5 sm:mt-0">
                   <h2 clasName="text-lg font-bold text-gray-900">{name}</h2>
-                  <p className="mt-1 text-xs text-gray-700">{orderqty}</p>
+
+                  <p className="text-m p-10">{orderqty}</p>
                 </div>
                 <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                   <div className="flex items-center space-x-4">
