@@ -37,7 +37,7 @@ const SubTotal = () => {
             <p className="text-sm text-gray-700">including VAT</p>
           </div>
         </div>
-        <Link to="/check-out/">
+        <Link to="/order-summary/">
           <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
             Check out
           </button>

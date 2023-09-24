@@ -4,6 +4,7 @@ const rootAPI = process.env.REACT_APP_ROOTAPI;
 
 const categoryAPI = rootAPI + "/category";
 const productAPI = rootAPI + "/product";
+const paymentAPI = rootAPI + "/payment";
 console.log(categoryAPI);
 const axiosProcesor = async ({ method, url, obj }) => {
   try {
@@ -41,6 +42,14 @@ export const getNewProductByCategory = (_id) => {
   const obj = {
     method: "get",
     url: productAPI + "/category/" + _id,
+  };
+  return axiosProcesor(obj);
+};
+
+export const getNewPayment = () => {
+  const obj = {
+    method: "get",
+    url: paymentAPI,
   };
   return axiosProcesor(obj);
 };

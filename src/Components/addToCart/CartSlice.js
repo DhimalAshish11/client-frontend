@@ -33,13 +33,16 @@ const cartSlice = createSlice({
     },
 
     removecart: (state, { payload }) => {
-      // Find the index of the cart item with the given _id and remove it from the carts array.
-      const indexOfItemToRemove = state.carts.findIndex(
-        (item) => item._id === payload._id
-      );
+      const IsItemRemoved = (state.carts = state.carts.filter(
+        (item) => item._id !== payload
+      ));
 
-      if (indexOfItemToRemove !== -1) {
-        state.carts.splice(indexOfItemToRemove, 1);
+      // Find the index of the cart item with the given _id and remove it from the carts array.
+      /* const indexOfItemToRemove = state.carts.findIndex(
+        (item) => item._id === payload._id
+      ); */
+
+      if (IsItemRemoved) {
         state.cartItemCount -= 1;
         if (state.cartItemCount < 0) {
           state.cartItemCount = 0;

@@ -3,59 +3,88 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeCartAction } from "../../addToCart/CartAction";
 import { updatecartquantity } from "../../addToCart/CartSlice";
 
-const Cart = ({ thumbnail, name, price, _id, orderqty }) => {
+const Cart = () => {
   const dispatch = useDispatch();
+  const { carts } = useSelector((state) => state.cartInfo);
 
-  const handleOnClick = (e) => {
-    e.preventDefault();
-    dispatch(removeCartAction({ _id }));
+  const handleOnClick = (_id) => {
+    dispatch(removeCartAction(_id));
   };
 
   return (
-    <section>
-      <div className="h-screen bg-gray-100 pt-20 flex flex-col items-center justify-start">
-        <h1 clasName="mb-10 text-center text-xl font-bold ">Cart Items</h1>
-        <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
-          <div className="rounded-lg md:w-2/3">
-            <div className="justify-between flex-col mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
-              <img
-                src={process.env.REACT_APP_ROOTSERVER + thumbnail?.slice(6)}
-                alt={name}
-                clasName="w-1/3 rounded-lg sm:w-40"
-              />
-              <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                <div className="mt-5 sm:mt-0">
-                  <h2 clasName="text-lg font-bold text-gray-900">{name}</h2>
+    <>
+      <div class="container mx-auto mt-10">
+        <div class="flex shadow-md my-10">
+          <div class="w-full bg-white px-10 py-10">
+            <div class="flex justify-between border-b pb-8">
+              <h1 class="font-semibold text-2xl">Shopping Cart</h1>
+              <h2 class="font-semibold text-2xl">{carts.length} items</h2>
+            </div>
+            <div class="flex mt-10 mb-5">
+              <h3 class="font-semibold text-gray-600 text-s uppercase w-2/5">
+                Product Details
+              </h3>
+              <h3 class="font-semibold text-center text-gray-600 text-s uppercase w-1/5 text-center">
+                Quantity
+              </h3>
+              <h3 class="font-semibold text-center text-gray-600 text-s uppercase w-1/5 text-center">
+                Price
+              </h3>
+              <h3 class="font-semibold text-center text-gray-600 text-s uppercase w-1/5 text-center">
+                Total
+              </h3>
+            </div>
 
-                  <p className="text-m p-10">{orderqty}</p>
-                </div>
-                <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
-                  <div className="flex items-center space-x-4">
-                    <p className="text-m p-10">${price * orderqty} </p>
-                    <svg
-                      onClick={handleOnClick}
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
+            {carts.map((item, i) => (
+              <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+                <div class="flex w-2/5">
+                  <div class="w-60">
+                    <img
+                      src={
+                        process.env.REACT_APP_ROOTSERVER +
+                        item.thumbnail?.slice(6)
+                      }
+                      alt={""}
+                      clasName="w-1/3 rounded-lg sm:w-40"
+                    />
+                  </div>
+                  <div class="flex flex-col  justify-center ml-4 flex-grow">
+                    <span class="font-bold text-md">{item.name}</span>
+
+                    <button
+                      class="font-semibold hover:text-red-500 text-gray-500 text-sm"
+                      onClick={() => handleOnClick(item._id)}
                     >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
+                      Remove
+                    </button>
                   </div>
                 </div>
+                <div class="flex justify-center w-1/5">{item.orderqty}</div>
+                <span class="text-center w-1/5 font-semibold text-sm">
+                  ${item.price}
+                </span>
+                <span class="text-center w-1/5 font-semibold text-sm">
+                  ${item.price * item.orderqty}
+                </span>
               </div>
-            </div>
+            ))}
+
+            <a
+              href="/"
+              class="flex font-semibold text-indigo-600 text-sm mt-10"
+            >
+              <svg
+                class="fill-current mr-2 text-indigo-600 w-4"
+                viewBox="0 0 448 512"
+              >
+                <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
+              </svg>
+              Continue Shopping
+            </a>
           </div>
-          {/* Sub total */}
         </div>
       </div>
-    </section>
+    </>
   );
 };
 
