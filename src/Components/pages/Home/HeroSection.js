@@ -6,6 +6,12 @@ import videoBackground from "../../../assets/video1.mp4";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const HeroSection = () => {
+  const backgroundImageStyle = {
+    backgroundImage: `url(${a})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  };
   const { products } = useSelector((state) => state.productInfo);
   return (
     <div>
@@ -129,6 +135,55 @@ const HeroSection = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="bg-gray-100">
+          <div className="container mx-auto py-4">
+            <div className="flex justify-between space-x-4">
+              <div className="w-1/4 bg-white shadow-md p-6 text-center">
+                <h2 className="text-xl font-semibold mb-4">Product 1</h2>
+                <div
+                  className=" h-64 bg-cover bg-center mb-4"
+                  style={backgroundImageStyle}
+                ></div>
+                <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+                  View Range
+                </button>
+              </div>
+              <div className="w-1/4 bg-white shadow-md p-6 text-center">
+                <h2 className="text-xl font-semibold mb-4">Product 2</h2>
+                <div className="h-64 bg-cover bg-center mb-4">
+                  {" "}
+                  <img src={a} alt="" />
+                </div>
+                <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+                  View Range
+                </button>
+              </div>
+              <div className="w-1/4 bg-white shadow-md p-6 text-center">
+                <h2 className="text-xl font-semibold mb-4">Product 3</h2>
+                <div className="h-64 bg-cover bg-center mb-4">
+                  {" "}
+                  <img src={a} alt="" />
+                </div>
+                <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+                  View Range
+                </button>
+              </div>
+              <div className="w-1/4 bg-white shadow-md p-6 text-center">
+                <h2 className="text-xl font-semibold mb-4">Product 4</h2>
+                <div className="h-64 bg-cover bg-center mb-4">
+                  {" "}
+                  <img src={a} alt="" />
+                </div>
+                <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+                  View Range
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
