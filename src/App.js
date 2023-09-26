@@ -13,6 +13,8 @@ import CartInfo from "./Components/pages/AddToCart/CartInfo";
 
 import { getPaymentAction } from "./Components/payment/PaymentAction";
 import OrderSummary from "./Components/pages/AddToCart/OrderSummary";
+import UserLogin from "./Components/user/UserLogin";
+import SignUp from "./Components/user/SignUp";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +36,8 @@ function App() {
 
         <Route path="/product/:slug?/:_id?" element={<ProductDetail />}></Route>
         <Route path="/order-summary/" element={<OrderSummary />}></Route>
+        <Route path="/user-login/" element={<UserLogin />}></Route>
+        <Route path="/sign-up/" element={<SignUp />}></Route>
       </Routes>
     </div>
   );
