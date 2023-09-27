@@ -5,27 +5,116 @@ const rootAPI = process.env.REACT_APP_ROOTAPI;
 const categoryAPI = rootAPI + "/category";
 const productAPI = rootAPI + "/product";
 const paymentAPI = rootAPI + "/payment";
+const userAPI = rootAPI + "/user";
 console.log(categoryAPI);
-const axiosProcesor = async ({ method, url, obj }) => {
+
+const getAccessJWT = () => {
+  return sessionStorage.getItem("accessJWT");
+};
+
+const getRefreshJWT = () => {
+  return localStorage.getItem("refreshJWT");
+};
+
+const axiosProcesor = async ({ method, url, obj, isPrivate, refreshToken }) => {
+  const token = refreshToken ? getRefreshJWT() : getAccessJWT();
+
+  const headers = {
+    Authorization: isPrivate ? token : null,
+  };
+
   try {
     const { data } = await axios({
       method,
       url,
       data: obj,
+      headers,
     });
     return data;
   } catch (error) {
+    if (
+      error?.response?.status === 403 &&
+      error?.response?.data?.message === "jwt expired"
+    ) {
+      //1. get new accessJWt
+      const { status, accessJWT } = await getNewAccessJWT();
+      if (status === "success" && accessJWT) {
+        sessionStorage.setItem("accessJWT", accessJWT);
+      }
+
+      //2. continue the request
+
+      return axiosProcesor({ method, url, obj, isPrivate, refreshToken });
+    }
     return {
       status: "error",
-      message: error.message,
+      message: error.response ? error?.response?.data?.message : error.message,
     };
   }
+};
+
+////user
+
+export const getUserInfo = () => {
+  const obj = {
+    method: "get",
+    url: userAPI,
+    isPrivate: true,
+  };
+  return axiosProcesor(obj);
+};
+
+export const getUser = () => {
+  const obj = {
+    method: "get",
+    url: userAPI,
+    isPrivate: true,
+  };
+  return axiosProcesor(obj);
+};
+
+export const postNewUser = (data) => {
+  const obj = {
+    method: "post",
+    url: userAPI,
+    obj: data,
+  };
+  return axiosProcesor(obj);
 };
 
 export const getCategory = () => {
   const obj = {
     method: "get",
     url: categoryAPI,
+  };
+  return axiosProcesor(obj);
+};
+
+export const signInUser = (data) => {
+  const obj = {
+    method: "post",
+    url: userAPI + "/sign-in",
+    obj: data,
+  };
+  return axiosProcesor(obj);
+};
+
+export const getNewAccessJWT = () => {
+  const obj = {
+    method: "get",
+    url: userAPI + "/get-accessjwt",
+    isPrivate: true,
+    refreshToken: true,
+  };
+  return axiosProcesor(obj);
+};
+
+export const updateUser = (data) => {
+  const obj = {
+    method: "put",
+    url: userAPI,
+    obj: data,
+    isPrivate: true,
   };
   return axiosProcesor(obj);
 };
