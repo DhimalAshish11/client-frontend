@@ -4,6 +4,7 @@ import categoryReducer from "./Components/pages/Category/categories/CategorySlic
 import productReducer from "./Components/product/productSlice";
 import cartReducer from "./Components/addToCart/CartSlice";
 import paymentReducer from "./Components/payment/PaymentSlice";
+import userReducer from "./Components/user/UserSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 const cartPersistConfig = {
@@ -19,6 +20,7 @@ const store = configureStore({
     productInfo: productReducer,
     paymentInfo: paymentReducer,
     cartInfo: persistCartReducer,
+    userInfo: userReducer,
   },
 });
 
