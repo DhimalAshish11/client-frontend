@@ -6,7 +6,6 @@ const categoryAPI = rootAPI + "/category";
 const productAPI = rootAPI + "/product";
 const paymentAPI = rootAPI + "/payment";
 const userAPI = rootAPI + "/user";
-console.log(categoryAPI);
 
 const getAccessJWT = () => {
   return sessionStorage.getItem("accessJWT");
@@ -18,11 +17,11 @@ const getRefreshJWT = () => {
 
 const axiosProcesor = async ({ method, url, obj, isPrivate, refreshToken }) => {
   const token = refreshToken ? getRefreshJWT() : getAccessJWT();
-
+  console.log(token);
   const headers = {
     Authorization: isPrivate ? token : null,
   };
-
+  console.log(headers);
   try {
     const { data } = await axios({
       method,
@@ -30,6 +29,8 @@ const axiosProcesor = async ({ method, url, obj, isPrivate, refreshToken }) => {
       data: obj,
       headers,
     });
+
+    console.log(data);
     return data;
   } catch (error) {
     if (
@@ -74,19 +75,24 @@ export const getUser = () => {
 };
 
 export const postNewUser = (data) => {
+  console.log(data);
   const obj = {
     method: "post",
     url: userAPI,
     obj: data,
   };
+
+  console.log(obj);
   return axiosProcesor(obj);
 };
 
-export const getCategory = () => {
+export const postNewUserVerificationInfo = (data) => {
   const obj = {
-    method: "get",
-    url: categoryAPI,
+    method: "post",
+    url: userAPI + "/user-verification",
+    obj: data,
   };
+  console.log(data);
   return axiosProcesor(obj);
 };
 
@@ -95,6 +101,28 @@ export const signInUser = (data) => {
     method: "post",
     url: userAPI + "/sign-in",
     obj: data,
+  };
+  console.log(data);
+  return axiosProcesor(obj);
+};
+
+export const logoutAdmin = (_id) => {
+  const obj = {
+    method: "post",
+    url: userAPI + "/logout",
+    obj: {
+      _id,
+      accessJWT: getAccessJWT(),
+      refreshJWT: getRefreshJWT(),
+    },
+  };
+  return axiosProcesor(obj);
+};
+
+export const getCategory = () => {
+  const obj = {
+    method: "get",
+    url: categoryAPI,
   };
   return axiosProcesor(obj);
 };

@@ -15,6 +15,8 @@ import { getPaymentAction } from "./Components/payment/PaymentAction";
 import OrderSummary from "./Components/pages/AddToCart/OrderSummary";
 import UserLogin from "./Components/user/UserLogin";
 import SignUp from "./Components/user/SignUp";
+import UserVerification from "./Components/user/UserVerification";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +31,8 @@ function App() {
     <div className="">
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/user-verification" element={<UserVerification />} />
+
         <Route path="/category/:slug?/:_id?" element={<Guitars />}></Route>
 
         <Route path="/amps" element={<Amps />}></Route>
@@ -39,6 +43,7 @@ function App() {
         <Route path="/user-login/" element={<UserLogin />}></Route>
         <Route path="/sign-up/" element={<SignUp />}></Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

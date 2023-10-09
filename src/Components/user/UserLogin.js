@@ -1,8 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TEInput, TERipple } from "tw-elements-react";
 import ClientLayout from "../layout/ClientLayout";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { SignInUserAction, autoLogin } from "./userAction";
+
+const initialState = {
+  email: "",
+  password: "",
+};
 
 const UserLogin = () => {
+  const location = useLocation();
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [form, setForm] = useState(initialState);
+  const { user } = useSelector((state) => state.userInfo);
+  console.log(user);
+  const pathTo = location.state?.from?.location?.pathname || "/";
+  useEffect(() => {
+    user?._id && navigate(pathTo);
+    dispatch(autoLogin());
+  }, [user, navigate, dispatch, pathTo]);
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(SignInUserAction(form));
+  };
+
   return (
     <ClientLayout>
       <section className="h-screen">
@@ -19,7 +55,7 @@ const UserLogin = () => {
 
             {/* <!-- Right column container --> */}
             <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
-              <form>
+              <form onSubmit={handleOnSubmit}>
                 {/* <!--Sign in section--> */}
                 <div className="flex flex-row items-center justify-center lg:justify-start">
                   <p className="mb-0 mr-4 text-lg">Sign in with</p>
@@ -88,7 +124,9 @@ const UserLogin = () => {
 
                 {/* <!-- Email input --> */}
                 <TEInput
+                  onChange={handleOnChange}
                   type="email"
+                  name="email"
                   placeholder="Email address"
                   size="lg"
                   className="mb-6"
@@ -96,7 +134,9 @@ const UserLogin = () => {
 
                 {/* <!--Password input--> */}
                 <TEInput
+                  onChange={handleOnChange}
                   type="password"
+                  name="password"
                   placeholder="Password"
                   className="mb-6"
                   size="lg"
@@ -127,7 +167,7 @@ const UserLogin = () => {
                 <div className="text-center lg:text-left">
                   <TERipple rippleColor="light">
                     <button
-                      type="button"
+                      type="submit"
                       className="inline-block rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                     >
                       Login

@@ -1,4 +1,9 @@
-import { getUserInfo, postNewUser, signInUser } from "../../helper/axios";
+import {
+  getNewAccessJWT,
+  getUserInfo,
+  postNewUser,
+  signInUser,
+} from "../../helper/axios";
 import { setUser } from "./UserSlice";
 import { toast } from "react-toastify";
 
@@ -12,7 +17,7 @@ export const createNewUserAction = async (obj) => {
   toast[status](message);
 };
 
-export const SignInAdminAction = (obj) => async (dispatch) => {
+export const SignInUserAction = (obj) => async (dispatch) => {
   const pendingResp = signInUser(obj);
 
   toast.promise(pendingResp, {
@@ -29,10 +34,30 @@ export const SignInAdminAction = (obj) => async (dispatch) => {
   ////get the user data an dmount b the state
   dispatch(getUserProfileAction());
 };
+export const autoLogin = () => async (dispatch) => {
+  const accessJWT = sessionStorage.getItem("accessJWT");
+  if (accessJWT) {
+    return dispatch(getUserProfileAction());
+  }
+
+  const refreshJWT = localStorage.getItem("refreshJWT");
+
+  if (refreshJWT) {
+    // request new accessJWT from server and all getAdminProfile
+
+    const { accessJWT } = await getNewAccessJWT();
+
+    if (accessJWT) {
+      sessionStorage.setItem("accessJWT", accessJWT);
+      dispatch(getUserProfileAction());
+    }
+  }
+};
 
 export const getUserProfileAction = () => async (dispatch) => {
   const { status, user } = await getUserInfo();
 
+  console.log(user);
   if (status === "success") {
     dispatch(setUser(user));
   }
