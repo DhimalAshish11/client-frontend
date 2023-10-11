@@ -108,16 +108,17 @@ const HeroSection = () => {
             {products.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer "
+                className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer flex flex-col justify-between"
               >
                 <img
                   src={
                     process.env.REACT_APP_ROOTSERVER + item.thumbnail?.slice(6)
                   }
                   alt={item.name}
-                  className="w-full h-48 object-cover hover:scale-110"
+                  className="w-1/3 rounded-lg sm:w-40 hover:scale-110"
                 />
-                <div className="p-4 flex-grow">
+
+                <div className="p-4 ">
                   <h3 className="text-xl font-semibold">
                     {" "}
                     <Link to={`/product/${item.slug}/${item._id}`}>
@@ -135,55 +136,6 @@ const HeroSection = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="bg-gray-100">
-          <div className="container mx-auto py-4">
-            <div className="flex justify-between space-x-4">
-              <div className="w-1/4 bg-white shadow-md p-6 text-center">
-                <h2 className="text-xl font-semibold mb-4">Product 1</h2>
-                <div
-                  className=" h-64 bg-cover bg-center mb-4"
-                  style={backgroundImageStyle}
-                ></div>
-                <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-                  View Range
-                </button>
-              </div>
-              <div className="w-1/4 bg-white shadow-md p-6 text-center">
-                <h2 className="text-xl font-semibold mb-4">Product 2</h2>
-                <div className="h-64 bg-cover bg-center mb-4">
-                  {" "}
-                  <img src={a} alt="" />
-                </div>
-                <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-                  View Range
-                </button>
-              </div>
-              <div className="w-1/4 bg-white shadow-md p-6 text-center">
-                <h2 className="text-xl font-semibold mb-4">Product 3</h2>
-                <div className="h-64 bg-cover bg-center mb-4">
-                  {" "}
-                  <img src={a} alt="" />
-                </div>
-                <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-                  View Range
-                </button>
-              </div>
-              <div className="w-1/4 bg-white shadow-md p-6 text-center">
-                <h2 className="text-xl font-semibold mb-4">Product 4</h2>
-                <div className="h-64 bg-cover bg-center mb-4">
-                  {" "}
-                  <img src={a} alt="" />
-                </div>
-                <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-                  View Range
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </section>

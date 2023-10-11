@@ -33,14 +33,14 @@ const GuitarsProducts = () => {
             {productDt?.map((item) => (
               <div
                 key={item._id}
-                className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
+                className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer flex flex-col justify-between"
               >
                 <img
                   src={
                     process.env.REACT_APP_ROOTSERVER + item.thumbnail?.slice(6)
                   }
                   alt={item.name}
-                  className="w-full h-48 object-cover hover:scale-110"
+                  className="w-1/3 rounded-lg sm:w-40 hover:scale-110"
                 />
                 <div className="p-4">
                   <h3 className="text-xl font-semibold">
