@@ -16,7 +16,7 @@ const HeroSection = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gray-900 text-white py-16 relative">
+      <section className="bg-gray-900 text-white py-16 relative mt-8">
         <div className=" absolute top-0 left-0 w-full h-full overflow-hidden">
           <video
             autoPlay

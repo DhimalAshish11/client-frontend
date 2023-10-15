@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutAdmin } from "../../helper/axios";
@@ -11,6 +11,8 @@ export const Header = () => {
   const { cartItemCount } = useSelector((state) => state.cartInfo);
   const { user } = useSelector((state) => state.userInfo);
   console.log(cartItemCount);
+
+  const [searchProduct, setSearchProduct] = useState([]);
 
   const handleOnLogout = () => {
     // log out from server by removing the access and refresh JWTs
@@ -26,9 +28,19 @@ export const Header = () => {
     navigate("/");
   };
 
+  const handleOnSearch = (e) => {
+    const { value } = e.target;
+    console.log(value);
+    const searchProduct = products.filter((data) =>
+      data.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setSearchProduct(searchProduct);
+    console.log(searchProduct);
+  };
+
   return (
     <>
-      <nav className="bg-gray-900 text-white p-4">
+      <nav className="bg-gray-900 text-white p-4 fixed w-full top-0 z-20">
         <div className="container mx-auto flex items-center justify-between">
           {/* Logo */}
           <div className="text-2xl font-semibold">YourBrand</div>
@@ -56,6 +68,7 @@ export const Header = () => {
           <div className="relative">
             <input
               type="text"
+              onChange={handleOnSearch}
               placeholder="Search..."
               className="bg-gray-700 text-gray-100 px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-yellow-500"
             />

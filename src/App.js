@@ -17,6 +17,7 @@ import UserLogin from "./Components/user/UserLogin";
 import SignUp from "./Components/user/SignUp";
 import UserVerification from "./Components/user/UserVerification";
 import { ToastContainer } from "react-toastify";
+import Contact from "./Components/pages/Contact/Contact";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
         <Route path="/order-summary/" element={<OrderSummary />}></Route>
         <Route path="/user-login/" element={<UserLogin />}></Route>
         <Route path="/sign-up/" element={<SignUp />}></Route>
+        <Route path="/contact/" element={<Contact />}></Route>
       </Routes>
       <ToastContainer />
     </div>
