@@ -16,7 +16,7 @@ const HomeSection = () => {
   }, [dispatch, _id]);
 
   return (
-    <div className="flex mt-5">
+    <div className="flex mt-11">
       {/* Sidebar */}
       <aside className="w-1/4 h-100 bg-gray-200 p-4 mt-4">
         <h2 className="text-xl font-semibold m-6">Product Categories</h2>
@@ -43,7 +43,7 @@ const HomeSection = () => {
         </div>
       </aside>
 
-      <main className="w-3/4 p-4">
+      <main className="w-3/4 p-4 mt-5">
         <HeroSection />
       </main>
     </div>

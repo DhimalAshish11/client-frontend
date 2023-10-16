@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <ClientLayout>
       <main>
-        <div class="container my-24 mx-auto md:px-6">
+        <div class="container my-40 mx-auto md:px-7">
           <section class="mb-32">
             <div class="flex flex-wrap">
               <div class="mb-10 w-full shrink-0 grow-0 basis-auto md:mb-0 md:w-6/12 md:px-3 lg:px-6">

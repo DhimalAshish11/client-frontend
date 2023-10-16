@@ -14,7 +14,7 @@ export const ClientLayout = ({ children, title }) => {
             <h3>{title}</h3>
             <hr />
           </div>
-          <div className="page-content mt-3">{children}</div>
+          <div className="page-content mt-5">{children}</div>
         </Container>
 
         <Footer />

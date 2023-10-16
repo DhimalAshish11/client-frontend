@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutAdmin } from "../../helper/axios";
 import { setUser } from "../user/UserSlice";
+import { CustomModal } from "../custom/CustomModal";
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -50,47 +51,21 @@ export const Header = () => {
             <Link to="/" className="hover:text-gray-300">
               Home
             </Link>
-            <Link to="/" className="hover:text-gray-300">
-              Shop
-            </Link>
+
             <Link to="/" className="hover:text-gray-300">
               Products
             </Link>
             <Link to="/" className="hover:text-gray-300">
               About
             </Link>
-            <Link to="/" className="hover:text-gray-300">
-              Contact Us
+            <Link to="/contact/" className="hover:text-gray-300">
+              Contact
             </Link>
           </ul>
 
           {/* Search Bar */}
           <div className="relative">
-            <input
-              type="text"
-              onChange={handleOnSearch}
-              placeholder="Search..."
-              className="bg-gray-700 text-gray-100 px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            />
-            <button className="absolute right-2 top-2 text-gray-500">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M14.293 13.293a6 6 0 111.414-1.414l5 5a1 1 0 01-1.414 1.414l-5-5z"
-                  clipRule="evenodd"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M9 14a5 5 0 100-10 5 5 0 000 10z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
+            <CustomModal />
           </div>
 
           <div className="flex items-center space-x-4">
