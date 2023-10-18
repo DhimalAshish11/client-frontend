@@ -21,7 +21,7 @@ const CheckOut = () => {
     <>
       <div class="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
         <a href="#" class="text-2xl font-bold text-gray-800">
-          sneekpeeks
+          Check Out
         </a>
         <div class="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">
           <div class="relative">
@@ -129,40 +129,6 @@ const CheckOut = () => {
               </div>
             ))}
           </div>
-
-          {/* <p class="mt-8 text-lg font-medium">Payment Methods</p>
-          <form class="mt-5 grid gap-6">
-            {payments?.map((item) => (
-              <div key={item._id} class="relative">
-                <input
-                  class="peer hidden [&:checked_+_label_svg]:block"
-                  id={`radio_1-${item._id}`}
-                  value={item._id}
-                  onChange={handleOnChecked}
-                  type="radio"
-                  name="radio"
-                  checked={checkedDt === item._id}
-                />
-                <span class="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                <label
-                  class="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
-                  for={`radio_1-${item._id}`}
-                >
-                  <img
-                    class="w-14 object-contain"
-                    src="/images/naorrAeygcJzX0SyNI4Y0.png"
-                    alt=""
-                  />
-                  <div class="ml-5">
-                    <span class="mt-2 font-semibold">{item.title}</span>
-                    <p class="text-slate-500 text-sm leading-6">
-                      {item.description}
-                    </p>
-                  </div>
-                </label>
-              </div>
-            ))}
-          </form> */}
         </div>
 
         <Elements stripe={stripePromise}>

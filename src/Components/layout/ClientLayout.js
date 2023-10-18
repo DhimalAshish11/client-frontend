@@ -10,7 +10,7 @@ export const ClientLayout = ({ children, title }) => {
         <Header />
 
         <Container>
-          <div className="mt-3">
+          <div className="mt-5">
             <h3>{title}</h3>
             <hr />
           </div>

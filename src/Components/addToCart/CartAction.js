@@ -13,7 +13,7 @@ export const postCartAction = (product) => async (dispatch) => {
 };
 
 export const removeCartAction = (product) => async (dispatch) => {
-  toast.success("Product added");
+  toast.success("Product has been removed");
 
   dispatch(removecart(product));
 };

@@ -13,7 +13,7 @@ const Cart = () => {
 
   return (
     <>
-      <div class="container mx-auto mt-10">
+      <div class="container mx-auto mt-20">
         <div class="flex shadow-md my-10">
           <div class="w-full bg-white px-10 py-10">
             <div class="flex justify-between border-b pb-8">
@@ -52,7 +52,7 @@ const Cart = () => {
                     <span class="font-bold text-md">{item.name}</span>
 
                     <button
-                      class="font-semibold hover:text-red-500 text-gray-500 text-sm"
+                      class="font-semibold hover:text-red-500 text-red-500 text-sm mt-4"
                       onClick={() => handleOnClick(item._id)}
                     >
                       Remove

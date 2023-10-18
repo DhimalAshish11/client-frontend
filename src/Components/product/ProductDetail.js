@@ -43,10 +43,10 @@ const ProductDetail = () => {
           <section className="text-gray-600 body-font overflow-hidden">
             <div className="container px-5 py-24 mx-auto">
               <form>
-                <div className="md:w-full mx-auto flex flex-wrap">
+                <div className="md:w-full mx-auto flex flex-wrap gap-7">
                   <img
                     alt="ecommerce"
-                    className=" lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+                    className=" lg:w-1/3 w-full lg:h-auto h-50 object-cover object-center rounded"
                     src={
                       process.env.REACT_APP_ROOTSERVER +
                       productDt.thumbnail?.slice(6)
