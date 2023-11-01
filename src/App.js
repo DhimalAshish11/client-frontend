@@ -18,6 +18,7 @@ import SignUp from "./Components/user/SignUp";
 import UserVerification from "./Components/user/UserVerification";
 import { ToastContainer } from "react-toastify";
 import Contact from "./Components/pages/Contact/Contact";
+import ResetPassword from "./Components/user/ResetPassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/user-verification" element={<UserVerification />} />
+        <Route path="/password-reset" element={<ResetPassword />} />
 
         <Route path="/category/:slug?/:_id?" element={<Guitars />}></Route>
 

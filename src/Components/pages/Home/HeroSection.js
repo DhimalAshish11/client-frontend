@@ -31,7 +31,7 @@ const HeroSection = () => {
         </div>
         <div className="container mx-auto text-center relative z-10">
           <h1 className="text-4xl font-extrabold mb-4">
-            Welcome to Your E-Commerce Store
+            Welcome to YourGuitars Store
           </h1>
           <p className="text-lg mb-8">
             Discover the best deals on our products.

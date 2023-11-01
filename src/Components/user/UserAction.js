@@ -3,6 +3,7 @@ import {
   getUserInfo,
   postNewUser,
   signInUser,
+  updatePassword,
 } from "../../helper/axios";
 import { setUser } from "./UserSlice";
 import { toast } from "react-toastify";
@@ -60,5 +61,21 @@ export const getUserProfileAction = () => async (dispatch) => {
   console.log(user);
   if (status === "success") {
     dispatch(setUser(user));
+  }
+};
+
+export const updateUserPasswordAction = (data) => async (dispatch) => {
+  const respPending = updatePassword(data);
+  toast.promise(respPending, {
+    pending: "please wait....",
+  });
+
+  const { status, message } = await respPending;
+
+  toast[status](message);
+
+  if (status === "success") {
+    //call the api to fetch all the cats and mount in the state
+    dispatch(getUserProfileAction());
   }
 };

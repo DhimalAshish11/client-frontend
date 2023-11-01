@@ -120,6 +120,34 @@ export const logoutAdmin = (_id) => {
   return axiosProcesor(obj);
 };
 
+export const updatePassword = (data) => {
+  const obj = {
+    method: "put",
+    url: userAPI + "/change-password",
+    obj: data,
+    isPrivate: true,
+  };
+  return axiosProcesor(obj);
+};
+
+export const requestPassOTP = (email) => {
+  const obj = {
+    method: "post",
+    url: userAPI + "/request-otp",
+    obj: { email },
+  };
+  return axiosProcesor(obj);
+};
+
+export const resetPass = (data) => {
+  const obj = {
+    method: "post",
+    url: userAPI + "/reset-password",
+    obj: data,
+  };
+  return axiosProcesor(obj);
+};
+
 export const getCategory = () => {
   const obj = {
     method: "get",

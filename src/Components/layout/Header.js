@@ -44,7 +44,7 @@ export const Header = () => {
       <nav className="bg-gray-900 text-white p-4 fixed w-full top-0 z-20">
         <div className="container mx-auto flex items-center justify-between">
           {/* Logo */}
-          <div className="text-2xl font-semibold">YourBrand</div>
+          <div className="text-2xl font-semibold">YourGuitars</div>
 
           {/* Navigation Links */}
           <ul className="flex space-x-4 mt-3 color-white">

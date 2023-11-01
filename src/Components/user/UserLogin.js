@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TEInput, TERipple } from "tw-elements-react";
 import ClientLayout from "../layout/ClientLayout";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SignInUserAction, autoLogin } from "./userAction";
 
@@ -160,7 +160,7 @@ const UserLogin = () => {
                   </div>
 
                   {/* <!--Forgot password link--> */}
-                  <a href="#!">Forgot password?</a>
+                  <Link to="/password-reset">Forgot password?</Link>
                 </div>
 
                 {/* <!-- Login button --> */}
