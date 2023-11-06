@@ -4,7 +4,7 @@
 // PasswordOTP.js
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { Alert, Container } from "react-bootstrap";
+
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../layout/Footer";
 import { Header } from "../layout/Header";
@@ -16,7 +16,7 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState("otp");
   const [email, setEmail] = useState("");
-  const [resp, setResp] = useState({});
+  const [resp, setResp] = useState("");
 
   const handleOnOtpRequest = async (email) => {
     setEmail(email);
@@ -32,7 +32,10 @@ const ResetPassword = () => {
 
     const result = await pending;
     if (result.status === "success") {
-      setResp(result);
+      console.log(result);
+
+      setResp(result.message);
+      console.log(resp);
       setForm("reset");
     } else {
       toast.error(result.message);
@@ -65,14 +68,12 @@ const ResetPassword = () => {
     <>
       <Header />
       <main className="pt-5">
-        {resp.message && (
-          <Container>
-            <Alert variant={resp.status === "success" ? "success" : "danger"}>
-              {resp.message}
-            </Alert>
-          </Container>
+        {resp && (
+          <div className=" bg-green-300 text-center text-black mt-[7rem]">
+            {resp}
+          </div>
         )}
-        <div>{forms[form]}</div>
+        <div className="">{forms[form]}</div>
       </main>
       <Footer />;
     </>

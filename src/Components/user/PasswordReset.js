@@ -36,12 +36,17 @@ export const PasswordReset = ({ setForm, processResetPassAPI }) => {
       return toast.error("Password should match!");
     }
 
+    console.log(rest);
+
     processResetPassAPI(rest);
   };
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
-      <form className="bg-white p-8 rounded shadow-md w-96">
+      <form
+        onSubmit={handleOnSubmit}
+        className="bg-white p-8 rounded shadow-md w-96"
+      >
         <h3 className="text-3xl font-semibold mb-6">Reset New Password</h3>
         <hr className="mb-6" />
 
