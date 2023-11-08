@@ -6,6 +6,7 @@ const categoryAPI = rootAPI + "/category";
 const productAPI = rootAPI + "/product";
 const paymentAPI = rootAPI + "/payment";
 const userAPI = rootAPI + "/user";
+const orderAPI = rootAPI + "/order";
 const stripeAPI = rootAPI + "/create-payment-intent";
 
 const getAccessJWT = () => {
@@ -210,3 +211,25 @@ export const postStripePayment = (data) => {
   };
   return axiosProcesor(obj);
 };
+
+///order
+
+export const postOrder = (data) => {
+  const obj = {
+    method: "post",
+    url: orderAPI,
+    obj: data,
+  };
+  return axiosProcesor(obj);
+};
+
+//get order list
+
+/* export const getOrderData = (orderNumber) => {
+  console.log(orderNumber);
+  const obj = {
+    method: "get",
+    url: orderNumber ? orderAPI + "/" + orderNumber : orderAPI,
+  };
+  return axiosProcesor(obj);
+}; */
