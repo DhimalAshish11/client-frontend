@@ -19,6 +19,7 @@ import UserVerification from "./Components/user/UserVerification";
 import { ToastContainer } from "react-toastify";
 import Contact from "./Components/pages/Contact/Contact";
 import ResetPassword from "./Components/user/ResetPassword";
+import OrderComplete from "./Components/order/OrderComplete";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
         <Route path="/user-login/" element={<UserLogin />}></Route>
         <Route path="/sign-up/" element={<SignUp />}></Route>
         <Route path="/contact/" element={<Contact />}></Route>
+        <Route path="/order-complete/" element={<OrderComplete />}></Route>
       </Routes>
       <ToastContainer />
     </div>

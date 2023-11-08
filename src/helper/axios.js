@@ -225,11 +225,11 @@ export const postOrder = (data) => {
 
 //get order list
 
-/* export const getOrderData = (orderNumber) => {
+export const getOrderData = (orderNumber) => {
   console.log(orderNumber);
   const obj = {
     method: "get",
     url: orderNumber ? orderAPI + "/" + orderNumber : orderAPI,
   };
   return axiosProcesor(obj);
-}; */
+};
