@@ -2,12 +2,14 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import { postOrder, postStripePayment } from "../../../helper/axios";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { OrderNumber } from "../../../helper/orderNumber";
 import { useNavigate } from "react-router-dom";
+import { resetcart } from "../../addToCart/CartSlice";
 
 const CheckOutForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { carts } = useSelector((state) => state.cartInfo);
   console.log(carts);
@@ -65,6 +67,8 @@ const CheckOutForm = () => {
         localStorage.setItem("orderNumber", orderNumber);
 
         console.log({ formDt, carts, orderNumber });
+
+        dispatch(resetcart([]));
 
         toast.success("Payment Successful");
 

@@ -5,10 +5,19 @@ import { useSelector } from "react-redux";
 import SubTotal from "./SubTotal";
 
 export const CartInfo = () => {
+  const { carts } = useSelector((state) => state.cartInfo);
+
   return (
     <ClientLayout>
-      <Cart />
-      <SubTotal />
+      {carts.length === 0 ? (
+        <div className="h-[50vh] flex items-center justify-center text-3xl">
+          No item Found
+        </div>
+      ) : (
+        <>
+          <Cart /> <SubTotal />
+        </>
+      )}
     </ClientLayout>
   );
 };
