@@ -12,7 +12,6 @@ const OrderComplete = () => {
 
   const { order } = useSelector((state) => state.orderInfo);
   const { formDt, orderNumber, carts } = order;
-
   console.log(formDt, orderNumber, carts);
 
   return (
@@ -28,7 +27,12 @@ const OrderComplete = () => {
               business!
             </p>
 
-            <p>{orderNumBer}</p>
+            <div className="bg-indigo-100 p-4 rounded-lg text-center mb-6">
+              <p className="text-lg font-semibold text-indigo-700 mb-2">
+                Order Number:
+              </p>
+              <p className="text-xl text-indigo-900">{orderNumber}</p>
+            </div>
 
             <div className="bg-gray-50 p-4 rounded">
               <h2 className="text-xl font-semibold mb-4">Order Details</h2>
